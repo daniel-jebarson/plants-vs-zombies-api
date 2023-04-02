@@ -11,22 +11,39 @@ class DataCard extends Component {
 
   render() {
     return (
-      <div className="flex flex-col  w-5/6 max-w-xl hover:scale-105 transition-all mt-4">
+//       <div className="flex flex-col  w-5/6 max-w-xl hover:scale-105 transition-all mt-4">
+      <div className="flex flex-col items-center w-full rounded-lg sm:flex-row h-fit justify-center">
+
         <div className="flex flex-col w-full rounded-lg  sm:flex-row h-fit  justify-center">
           <div className="flex flex-col justify-center p-4 items-center bg-slate-300 dark:bg-neutral-900">
-            <Image
-              src={this.props.data[this.props.data.length - 1][1] || null}
-              width={100}
-              height={100}
-              layout='intrinsic'
-              alt={
-                this.props.data[this.props.data.length - 1][1].split("/")[-1] ||
-                null
-              }
-            />
+//             <Image
+//               src={this.props.data[this.props.data.length - 1][1] || null}
+//               width={100}
+//               height={100}
+//               layout='intrinsic'
+//               alt={
+//                 this.props.data[this.props.data.length - 1][1].split("/")[-1] ||
+//                 null
+//               }
+//             />
+      {this.props.data[this.props.data.length - 1][1] && (
+  <Image
+    src={this.props.data[this.props.data.length - 1][1]}
+    width={100}
+    height={100}
+    layout='intrinsic'
+    alt={
+      this.props.data[this.props.data.length - 1][1].split("/")[-1] ||
+      null
+    }
+  />
+)}
           </div>
-          <div className=" bg-slate-100 dark:bg-neutral-700 min-h-fit  rounded-b-lg w-full sm:rounded-none sm:rounded-r-lg  flex flex-1 py-1">
+//           <div className=" bg-slate-100 dark:bg-neutral-700 min-h-fit  rounded-b-lg w-full sm:rounded-none sm:rounded-r-lg  flex flex-1 py-1">
+<div className=" bg-slate-100 dark:bg-neutral-700 min-h-full  rounded-b-lg w-full sm:rounded-none sm:rounded-r-lg  flex flex-1 py-1">
+
             <div className="items-start flex flex-wrap h-fit ml-2 mb-3 mt-3">
+  
               {this.props.data.map((pair) => {
                 if (pair[0].toLowerCase().startsWith("desc")) {
                   return (
@@ -58,15 +75,26 @@ class DataCard extends Component {
           </div>
         </div>
 
-        {this.props.data.forEach((pair) => {
-          if (pair[0].toLowerCase() === "description") {
-            return (
-              <div className="rounded-lg bg-neutral-900 py-1 px-2">
-                {pair[1]}
-              </div>
-            );
-          }
-        })}
+//         {this.props.data.forEach((pair) => {
+//           if (pair[0].toLowerCase() === "description") {
+//             return (
+//               <div className="rounded-lg bg-neutral-900 py-1 px-2">
+//                 {pair[1]}
+//               </div>
+//             );
+//           }
+//         })}
+for (let i = 0; i < this.props.data.length; i++) {
+  const pair = this.props.data[i];
+  if (pair && pair[0].toLowerCase() === "description") {
+    return (
+      <div className="rounded-lg bg-neutral-900 py-1 px-2" key={i}>
+        {pair[1]}
+      </div>
+    );
+  }
+}
+
       </div>
     );
   }
